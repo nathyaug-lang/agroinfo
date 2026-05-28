@@ -1,0 +1,13 @@
+# Saídas e cache do gerador de Juros — NÃO versionar.
+# O cache usa data de modificação do arquivo; se fosse commitado, o checkout
+# do GitHub Actions o deixaria sempre "fresco" e os dados nunca atualizariam.
+juros_src/index.html
+juros_src/juros.xlsx
+juros_src/.cache/
+juros_src/.selic_history_cache.json
+juros_src/__pycache__/
+juros_src/update.log
+
+# Python
+__pycache__/
+*.pyc

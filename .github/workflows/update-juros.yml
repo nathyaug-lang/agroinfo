@@ -1,0 +1,53 @@
+name: Atualizar Juros
+
+# Roda o gerador do painel de Juros na nuvem e republica juros.html.
+# - Agendado: todo dia às 11:00 UTC (08:00 horário de Brasília).
+# - Manual: pode ser disparado a qualquer momento na aba "Actions" do GitHub.
+on:
+  schedule:
+    - cron: "0 11 * * *"
+  workflow_dispatch: {}
+
+# Permite que o robô faça commit/push do HTML regenerado de volta no repo.
+permissions:
+  contents: write
+
+# Evita rodadas sobrepostas se uma demorar.
+concurrency:
+  group: atualizar-juros
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: pip install openpyxl
+
+      - name: Gerar painel de Juros (busca dados frescos nas APIs)
+        working-directory: juros_src
+        run: python build.py
+
+      - name: Publicar HTML gerado na raiz do site
+        run: cp juros_src/index.html juros.html
+
+      - name: Commitar e publicar se houver mudança
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- juros.html; then
+            echo "Sem mudança nos dados de Juros — nada a publicar."
+          else
+            git add juros.html
+            git commit -m "Atualização automática do painel de Juros ($(date -u +%Y-%m-%d))"
+            git push
+            echo "Painel de Juros atualizado e publicado."
+          fi
