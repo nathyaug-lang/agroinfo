@@ -959,6 +959,19 @@ header.top {
   letter-spacing: .08em; text-transform: uppercase; margin-top: 4px;
 }
 
+.update-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 15px; margin-top: 10px;
+  background: var(--navy); color: #fff; text-decoration: none;
+  border-radius: 6px; font-size: 11px; font-weight: 600;
+  letter-spacing: .05em; text-transform: uppercase;
+  border: 1px solid var(--navy);
+  transition: background .15s, transform .1s ease;
+  box-shadow: 0 1px 3px rgba(10,35,66,.15);
+}
+.update-btn:hover { background: var(--green); border-color: var(--green); transform: translateY(-1px); }
+.update-btn svg { width: 14px; height: 14px; }
+
 h1.title { font-size: 30px; font-weight: 700; letter-spacing: -.01em;
   color: var(--navy); margin: 0 0 4px; }
 .subtitle { font-size: 15px; font-weight: 600; color: var(--green);
@@ -1116,6 +1129,18 @@ footer .src strong { color: var(--navy); }
       <div class="date">{HOJE.strftime('%d/%m/%Y')}</div>
       <div>Próximas: {proxima_str}</div>
       <div><span class="badge">● LIVE</span></div>
+      <a class="update-btn"
+         href="https://github.com/nathyaug-lang/agroinfo/actions/workflows/update-juros.yml"
+         target="_blank" rel="noopener"
+         title="Abre o GitHub — clique em 'Run workflow' para atualizar os dados">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"/>
+          <polyline points="1 20 1 14 7 14"/>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+        </svg>
+        Atualizar dados
+      </a>
     </div>
   </header>
 
