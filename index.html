@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agroinfo — Painéis de Mercado</title>
+<style>
+  :root{
+    --navy:#0A2342; --green:#1E5631; --green-soft:#2E7D4F;
+    --line:#E2E8F0; --muted:#64748B; --accent:#F1F5F9; --bg:#F8FAFC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Segoe UI","Inter","Helvetica Neue",Arial,sans-serif;
+    color:var(--navy); background:var(--bg); line-height:1.5;
+    min-height:100vh; display:flex; flex-direction:column;
+  }
+
+  /* ===== HEADER ===== */
+  header.top{
+    background:var(--navy); color:#fff;
+    padding:48px clamp(24px,6vw,80px) 56px;
+    border-bottom:6px solid var(--green);
+  }
+  .brand{
+    font-size:clamp(34px,5vw,52px); font-weight:900; letter-spacing:-1px;
+    display:flex; align-items:baseline; gap:2px;
+  }
+  .brand .agro{color:#fff}
+  .brand .info{color:#6FCF97}
+  .tagline{
+    margin-top:10px; font-size:13px; letter-spacing:.18em;
+    text-transform:uppercase; color:#9FB3C8; font-weight:600;
+  }
+  .lead{
+    margin-top:18px; max-width:620px; font-size:16px; color:#CBD5E1;
+  }
+
+  /* ===== MAIN ===== */
+  main{
+    flex:1; width:100%; max-width:1100px; margin:0 auto;
+    padding:48px clamp(24px,6vw,80px) 64px;
+  }
+  .section-label{
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--green); font-weight:700; margin-bottom:18px;
+    padding-left:12px; border-left:4px solid var(--green);
+  }
+  .grid{
+    display:grid; gap:22px;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  }
+
+  /* ===== CARDS ===== */
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:12px;
+    padding:28px 26px; text-decoration:none; color:inherit;
+    display:flex; flex-direction:column; gap:14px;
+    box-shadow:0 1px 3px rgba(10,35,66,.06);
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    position:relative; overflow:hidden;
+  }
+  .card.live{cursor:pointer}
+  .card.live:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(10,35,66,.12);
+    border-color:var(--green);
+  }
+  .card .icon{
+    width:48px; height:48px; border-radius:10px;
+    background:var(--accent); display:flex; align-items:center;
+    justify-content:center; font-size:24px;
+  }
+  .card h2{font-size:20px; font-weight:800; letter-spacing:-.3px}
+  .card p{font-size:14px; color:var(--muted)}
+  .card .cta{
+    margin-top:auto; font-size:13px; font-weight:700; color:var(--green);
+    letter-spacing:.04em; display:inline-flex; align-items:center; gap:6px;
+  }
+  .card .cta svg{width:16px;height:16px}
+
+  /* soon state */
+  .card.soon{opacity:.72; border-style:dashed}
+  .card.soon .icon{background:#FEF3C7}
+  .badge-soon{
+    position:absolute; top:18px; right:18px;
+    background:#FEF3C7; color:#92400E; font-size:10px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 9px; border-radius:20px;
+  }
+  .badge-live{
+    position:absolute; top:18px; right:18px;
+    background:var(--green); color:#fff; font-size:10px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 9px; border-radius:20px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    border-top:1px solid var(--line); padding:24px clamp(24px,6vw,80px);
+    font-size:12px; color:var(--muted); text-align:center;
+  }
+  footer strong{color:var(--navy)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><span class="agro">Agro</span><span class="info">info</span></div>
+  <div class="tagline">Research &amp; Market Intelligence</div>
+  <p class="lead">Painéis interativos de inteligência de mercado para o agronegócio.
+    Dados oficiais, atualização periódica e visualização direta no navegador.</p>
+</header>
+
+<main>
+  <div class="section-label">Painéis disponíveis</div>
+  <div class="grid">
+
+    <a class="card live" href="snd.html">
+      <span class="badge-live">Ativo</span>
+      <div class="icon">🌾</div>
+      <h2>SnD Brasil — Soja e Milho</h2>
+      <p>Supply &amp; Demand com cobertura de 4 países (Brasil, EUA, China, Argentina).
+        Gráficos, áreas, exportação, capacidade e mapa de produtividade.</p>
+      <span class="cta">Abrir painel
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+             stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <div class="card soon">
+      <span class="badge-soon">Em breve</span>
+      <div class="icon">📈</div>
+      <h2>Taxa de Juros</h2>
+      <p>Painel de acompanhamento de taxa de juros. Em preparação — disponível em breve.</p>
+      <span class="cta" style="color:var(--muted)">Em desenvolvimento</span>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <strong>Agroinfo</strong> · Research &amp; Market Intelligence ·
+  Não constitui recomendação de investimento.
+</footer>
+
+</body>
+</html>
